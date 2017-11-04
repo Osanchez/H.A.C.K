@@ -25,25 +25,35 @@ class BreweryQuery:
         return self.beers
 
     def add_beers(self, beer):
-        beers_array = self.get_alcohol_content(beer)
-        if len(beers_array) == 1:
-            self.beers.append(beers_array[0])
+        try:
+            beers_array = self.get_alcohol_content(beer)
+            if len(beers_array) == 1:
+                self.beers.append(beers_array[0])
+                return
+            else:
+                print("Please be more specific with beer name")
+            # else:
+                # counter = 0
+                # for i in beers_array:
+                    # print("[" + str(counter) + "] " + i.name)
+                    # counter += 1
+            # print
+            # choice = input("Please Select Beer: ")
+            # self.beers.append(beers_array[choice])
+        except TypeError:
             return
-        else:
-            counter = 0
-            for i in beers_array:
-                print("[" + str(counter) + "] " + i.name)
-                counter += 1
-        print
-        choice = input("Please Select Beer: ")
-        self.beers.append(beers_array[choice])
 
     def get_alcohol_content(self, beer_name):
         arguments = beer_name.split(" ")  # arguments to array of strings
         # API search method takes words separated by white spaces as separate arguments. Because of this, the
         # search method call will return all beers that contain any of the words in the argument.
         # to compensate, only the first word in the argument is given, before another refined search method is called
-        beers = self._api.search_beer(arguments[0])  # give api search method first word of argument
+        try:
+            beers = self._api.search_beer(arguments[0])  # give api search method first word of argument
+        except KeyError:
+            print("Invalid Entry")
+            return
+
         if len(arguments) > 1:  # If the argument only contains one word there is no need to run the refined search
             beer = refined_search(arguments[1::], beers)  # rest of the arguments, first search results
             return beer  # returns finalized results
@@ -53,7 +63,7 @@ class BreweryQuery:
             else:
                 return beers  # returns all possible results
 
-    def get_total_alcohol_content(self):
+    def get_total_alcohol_content(self):  # MAGIC FORMULA
         total = 0
         volume = 0
 
@@ -81,20 +91,11 @@ def main():  # Testing
 
     print
     print("SECOND TEST")
-    # TODO: Test 2 - Multiple Beers
+    # TODO: Test 3 - Multiple Beers
     # for each item in result set print name of beer object and alcohol content of beer object
     test2 = BreweryQuery(my_api_key)  # creates a BreweryQuery object and initialized it to variable named test
-    test2.add_beers("Corona Light")  # appends beer to list
-    test2.add_beers("Corona Familiar")  # appends beer to list
-    test2.add_beers("Corona Premier")  # appends beer to list
-    test2.add_beers("Corona Extra")  # appends beer to list
-    result = test2.get_beers()  # return list of beers
-    for i in result:
-        print("Beer Name: " + i.name)
-        print("Alcohol Content: " + i.abv + "%")
-        print
+    test2.add_beers("Corona")  # exceptions
 
-    print("Total Alcohol Content: " + str(test2.get_total_alcohol_content()))
 
 if __name__ == "__main__":
     main()
