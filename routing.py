@@ -58,7 +58,7 @@ class BreweryQuery:
         volume = 0
 
         for x in self.beers:
-            total += x.abv * 12
+            total += float(x.abv) * 12
             volume += 12
 
         return total/volume
@@ -66,17 +66,35 @@ class BreweryQuery:
 
 def main():  # Testing
     my_api_key = "5ceb8b4ef81887489d3b65211a60fe12"  # 400 api calls daily
-    test = BreweryQuery(my_api_key)  # creates a BreweryQuery object and initialized it to variable named test
-    # TODO: Throw beer names here to test search method.
-    test.add_beers("Corona Light")  # Calls method from the BrewerQuery Object
-    result = test.get_beers()
 
+    print("FIRST TEST")
+    # TODO: Test 1 - One Beer
     # for each item in result set print name of beer object and alcohol content of beer object
+    test1 = BreweryQuery(my_api_key)  # creates a BreweryQuery object and initialized it to variable named test
+    test1.add_beers("Corona Light")  # appends beer to list
+    result = test1.get_beers()  # return list of beers
+    for i in result:
+        print("Beer Name: " + i.name)
+        print("Alcohol Content: " + i.abv + "%")
+        print
+    print("Total Alcohol Content: " + str(test1.get_total_alcohol_content()))
+
+    print
+    print("SECOND TEST")
+    # TODO: Test 2 - Multiple Beers
+    # for each item in result set print name of beer object and alcohol content of beer object
+    test2 = BreweryQuery(my_api_key)  # creates a BreweryQuery object and initialized it to variable named test
+    test2.add_beers("Corona Light")  # appends beer to list
+    test2.add_beers("Corona Familiar")  # appends beer to list
+    test2.add_beers("Corona Premier")  # appends beer to list
+    test2.add_beers("Corona Extra")  # appends beer to list
+    result = test2.get_beers()  # return list of beers
     for i in result:
         print("Beer Name: " + i.name)
         print("Alcohol Content: " + i.abv + "%")
         print
 
+    print("Total Alcohol Content: " + str(test2.get_total_alcohol_content()))
 
 if __name__ == "__main__":
     main()
