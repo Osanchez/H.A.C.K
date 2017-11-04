@@ -16,9 +16,27 @@ class BreweryQuery:
     def __init__(self, api_key):
         self._key = api_key  # store api key privately
         self._api = self.get_api()  # initialize the API calling object
+        self.beers = []
 
     def get_api(self):  # returns API calling object
         return BreweryDB(self._key)
+
+    def get_beers(self):
+        return self.beers
+
+    def add_beers(self, beer):
+        beers_array = self.get_alcohol_content(beer)
+        if len(beers_array) == 1:
+            self.beers.append(beers_array)
+            return
+        else:
+            counter = 0
+            for i in beers_array:
+                print("[" + str(counter) + "] " + i.name)
+                counter += 1
+        print
+        choice = input("Please Select Beer: ")
+        self.beers.append(beers_array[choice])
 
     def get_alcohol_content(self, beer_name):
         arguments = beer_name.split(" ")  # arguments to array of strings
@@ -30,14 +48,28 @@ class BreweryQuery:
             beer = refined_search(arguments[1::], beers)  # rest of the arguments, first search results
             return beer  # returns finalized results
         else:
-            return beers  # returns all possible results
+            if len(beers) == 1:
+                return beers
+            else:
+                return beers  # returns all possible results
+
+    def get_total_alcohol_content(self):
+        total = 0
+        volume = 0
+
+        for x in self.beers:
+            total += x.abv * 12
+            volume += 12
+
+        return total/volume
 
 
-def main():
+def main():  # Testing
     my_api_key = "5ceb8b4ef81887489d3b65211a60fe12"  # 400 api calls daily
     test = BreweryQuery(my_api_key)  # creates a BreweryQuery object and initialized it to variable named test
     # TODO: Throw beer names here to test search method.
-    result = test.get_alcohol_content("Corona Light")  # Calls method from the BrewerQuery Object
+    test.add_beers("5")  # Calls method from the BrewerQuery Object
+    result = test.get_beers()
 
     # for each item in result set print name of beer object and alcohol content of beer object
     for i in result:
