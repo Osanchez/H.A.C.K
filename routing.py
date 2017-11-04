@@ -27,7 +27,7 @@ class BreweryQuery:
     def add_beers(self, beer):
         beers_array = self.get_alcohol_content(beer)
         if len(beers_array) == 1:
-            self.beers.append(beers_array)
+            self.beers.append(beers_array[0])
             return
         else:
             counter = 0
@@ -68,7 +68,7 @@ def main():  # Testing
     my_api_key = "5ceb8b4ef81887489d3b65211a60fe12"  # 400 api calls daily
     test = BreweryQuery(my_api_key)  # creates a BreweryQuery object and initialized it to variable named test
     # TODO: Throw beer names here to test search method.
-    test.add_beers("5")  # Calls method from the BrewerQuery Object
+    test.add_beers("Corona Light")  # Calls method from the BrewerQuery Object
     result = test.get_beers()
 
     # for each item in result set print name of beer object and alcohol content of beer object
