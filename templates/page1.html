@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+  <html>
+    <style>
+      body { background-color: blue;
+      }
+      p { color: red;
+        font-family: verdana;
+        font-size: 20px;
+      }
+    </style>
+    <body>
+      <form id="frm1" action="display.html" method ="GET">
+        First name: <input type="text" name="fname"><br>
+        Last name: <input type="text" name="lname"><br><br>
+        <input type="button" onclick="data()" value="Submit">
+      </form>
+      <p id="demo"></p>
+      <p id="demo1"></p>
+      <button type="button" onclick="Alcohol()">Click Me!</button>
+    <script>
+      function data() {
+        document.getElementById("frm1").submit();
+      }
+      function Alcohol() {
+        var Beers = 7;
+        var Ounce = 12;
+        var Percent = .05;
+        var W = 170;
+        var A = Beers*Ounce*Percent;
+        var Gender = 'f'
+        var r;
+        if (Gender == 'm') {
+          r = .73;
+        } else {
+          r = .66;
+        }
+        //var r = .73
+        var H = 4.5;
+        var BAC = ((A * 5.14) / (W * r)) - .015 * H;
+        document.getElementById("demo").innerHTML = (r);
+        document.getElementById("demo1").innerHTML = BAC;
+        //document.write(BAC);
+      }
+    </script>
+    </body>
+   </html>
