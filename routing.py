@@ -82,14 +82,14 @@ class BreweryQuery:
 def main():  # Testing
     my_api_key = "5ceb8b4ef81887489d3b65211a60fe12"  # 400 api calls daily
 
-    # TODO: Test 1 - One Beer
-    # for each item in result set print name of beer object and alcohol content of beer object
-    test1 = BreweryQuery(my_api_key)  # creates a BreweryQuery object and initialized it to variable named test
+    # creates a object that communicates with the database using PyBreweryAPI
+    # TODO: Flask will make functions calls using API_Object
+    API_Object = BreweryQuery(my_api_key)  # creates a BreweryQuery object and initialized it to variable named test
 
     # These are the function calls you will work with
-    test1.add_beers("Corona Light")  # appends beer to list
-    result = test1
-    print(result)
+    # API_Object.add_beers("Corona Light")  # Searches for beer and appends matching result to a list of beers
+    # result = API_Object # printing object calculates alcohol content total of all drinks that were searched for
+    # print(result) # prints the results
 
 if __name__ == "__main__":
     main()
