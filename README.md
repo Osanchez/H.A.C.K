@@ -6,7 +6,7 @@ Application designated to helping users determine their blood alcohol content wi
 individuals determine if they had one to many, or can take one to many. 
 
 Non-Functional Requirments:
-User Authentication
-Drink Reccomendations
+User Authentication,
+Drink recommendations
 ANTI-Hangover Tips
 + More!!!
