@@ -36,11 +36,12 @@ class BreweryQuery:
 def main():
     my_api_key = "5ceb8b4ef81887489d3b65211a60fe12"  # 400 api calls daily
     test = BreweryQuery(my_api_key)  # creates a BreweryQuery object and initialized it to variable named test
-    result = test.get_alcohol_content("Corona")  # Calls method from the BrewerQuery Object
+    # TODO: Throw beer names here to test search method.
+    result = test.get_alcohol_content("Corona Light")  # Calls method from the BrewerQuery Object
 
     # for each item in result set print name of beer object and alcohol content of beer object
     for i in result:
-        print("Name: " + i.name)
+        print("Beer Name: " + i.name)
         print("Alcohol Content: " + i.abv + "%")
         print
 
