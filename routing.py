@@ -18,6 +18,11 @@ class BreweryQuery:
         self._api = self.get_api()  # initialize the API calling object
         self.beers = []
 
+    def __str__(self):
+        output = ''
+        output += "Total Alcohol Content: " + str(self.get_total_alcohol_content())
+        return output
+
     def get_api(self):  # returns API calling object
         return BreweryDB(self._key)
 
@@ -77,25 +82,14 @@ class BreweryQuery:
 def main():  # Testing
     my_api_key = "5ceb8b4ef81887489d3b65211a60fe12"  # 400 api calls daily
 
-    print("FIRST TEST")
     # TODO: Test 1 - One Beer
     # for each item in result set print name of beer object and alcohol content of beer object
     test1 = BreweryQuery(my_api_key)  # creates a BreweryQuery object and initialized it to variable named test
+
+    # These are the function calls you will work with
     test1.add_beers("Corona Light")  # appends beer to list
-    result = test1.get_beers()  # return list of beers
-    for i in result:
-        print("Beer Name: " + i.name)
-        print("Alcohol Content: " + i.abv + "%")
-        print
-    print("Total Alcohol Content: " + str(test1.get_total_alcohol_content()))
-
-    print
-    print("SECOND TEST")
-    # TODO: Test 3 - Multiple Beers
-    # for each item in result set print name of beer object and alcohol content of beer object
-    test2 = BreweryQuery(my_api_key)  # creates a BreweryQuery object and initialized it to variable named test
-    test2.add_beers("Corona")  # exceptions
-
+    result = test1
+    print(result)
 
 if __name__ == "__main__":
     main()
