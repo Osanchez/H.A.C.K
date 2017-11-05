@@ -9,9 +9,12 @@
     </style>
     <body>
       <form id="frm1" action="display.html" metho="GET">
-        First name: <input type="text" name="fname"><br>
-        Last name: <input type="text" name="lname"><br><br>
-        <input type="button" onclick="data()" value="Submit">
+        Number of Beers: <input type="number" name="nob"><br><br>
+        User's Weight: <input type="number" name="weight"><br><br>
+        Hours since started drinking: <input type="number" name="hssd"><br><br>
+        Ounces: <input type="number" name="ounces"><br><br>
+        Percent: <input type="number" name="percent"><br><br>
+        Gender: <input type="text" name="gender"><br><br>
       </form>
       <p id="demo"></p>
       <p id="demo1"></p>
@@ -21,12 +24,13 @@
         document.getElementById("frm1").submit();
       }
       function Alcohol() {
-        var Beers = 7;
-        var Ounce = 12;
-        var Percent = .05;
-        var W = 170;
+        var Beers = document.getElementsByName("nob")[0].value;
+        //var Beers = 7;
+        var Ounce = document.getElementsByName("ounces")[0].value;
+        var Percent = document.getElementsByName("percent")[0].value;
+        var Weight = document.getElementsByName("weight")[0].value;
         var A = Beers*Ounce*Percent;
-        var Gender = 'f'
+        var Gender = document.getElementsByName("gender")[0].value;
         var r;
         if (Gender == 'm') {
           r = .73;
@@ -35,9 +39,18 @@
         }
         //var r = .73
         var H = 4.5;
-        var BAC = ((A * 5.14) / (W * r)) - .015 * H;
-        document.getElementById("demo").innerHTML = (r);
+        var BAC = ((A * 5.14) / (Weight * r)) - .015 * H;
+        //document.getElementById("demo").innerHTML = (A);
         document.getElementById("demo1").innerHTML = BAC;
+        /*if (BAC<.03) {
+          return "You are fine"
+        } else if (BAC > .04 or BAC < .06) {
+          return "Becareful. You will experience a lower of inhibitions.
+        } else if (BAC > .07 or BAC < .09) {
+          return "Becareful. You will experience an inpariment of balance, speec, vision, reaction time, and hearing.
+        } else if (BAC > .10 or BAC < .125) {
+          return "Becareful! You will experience significant impairment of motor coordinationand loss of good judgement. Speech may be slurred; balance, vision, reaction time and hearing will be impaired!
+        }*/
         //document.write(BAC);
       }
     </script>
