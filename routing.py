@@ -23,8 +23,7 @@ class BreweryQuery:
         self.beers = []
 
     def __str__(self):
-        output = ''
-        output += "Total Alcohol Content: " + str(self.get_total_alcohol_content())
+        output = self.get_total_alcohol_content()
         return output
 
     def get_api(self):  # returns API calling object
