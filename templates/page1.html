@@ -1,7 +1,7 @@
 <!DOCTYPE html>  
 <html>
     <style>
-      body { background-color: blue;
+      body { background-color: white;
       }
       p { color: red;
         font-family: verdana;
@@ -12,35 +12,26 @@
          <h3>H.A.C.K</h3>
         User's Weight: <input id="weight" type="number" name="weight">
         <br><br>
-        Hours since started drinking: <input id="hssd" type="number" name="hssd">
+        Hours Since Last First Drink: <input id="hssd" type="number" name="hssd">
         <br><br>
         Gender: <input id="gender" type="text" name="gender">
         <br><br>
-        <h2> Enter the drinks you've had. If you've had more than one drink, click the 'Add Drink' button </h2>
-        <ul id="addrlist"><input type="drink" name="beer" value="Enter Beer..."></ul>
- 			<button id="drinkAdd" type="button">Add Drink</button>
+        <h3> Enter the drinks you've had. If you've had more than one drink, click the 'Add Drink' button. </h3>
+        Enter Beer: <input type="drink" name="beer" value=""> //TODO: THIS IS YOUR HTML VALUE YOU WANT MAN
  			<button id="submitData" type="button">Calculate BAC</button>
  			<br>
  			<br>
-         <p id="demo"></p>
+         <textarea id="result" rows="4" cols="50"></textarea>
       	</form>
 
   		<script>
-          
-        //Appends text box to container 
-        document.getElementById("drinkAdd").onclick = function() {
-          var li = document.createElement("p");
-          var input = document.createElement("input");
-          input.value = "Enter Beer..."
-          li.appendChild(input);
-          document.getElementById("addrlist").appendChild(li);
-          return false;
-        }
-        
-        
+
+  		var result = 0;
+  		var volume_alcohol = 0;
+
         function Calculate_BAC() {
        		var Weight = document.getElementsByName("weight")[0].value;
-       		var A = 1; // A is going to be given
+       		var A = 1; // TODO: ADD YOUR RESULT HERE MAN
        		var Gender = document.getElementsByName("gender")[0].value;
             var H = document.getElementsByName("hssd")[0].value;
        		var r;
@@ -51,17 +42,17 @@
          		r = .66;
              }
           
-       		var BAC_calculation = ((A * 5.14) / (Weight * r)) - .015 * H; 
-          	//BAC_calculation=1;
+       		var BAC_calculation = ((A * 5.14) / (Weight * r)) - .015 * H;
        		return BAC_calculation; 
      	}
           
-     //update text area - 
+     //update text area
      document.getElementById("submitData").onclick = function(){
-     	var result = Calculate_BAC(); //this is where you append the results to the second 
+        volume_alcohol += 12;
+     	result += (Calculate_BAC() / volume_alcohol); //this is where you append the results to the second
         document.getElementById("result").value = result;
-         
-     }  
+
+     }
         </script>
  
     <body>
