@@ -1,83 +1,37 @@
 <!DOCTYPE html>  
 <html>
     <style>
-    head {
-    text-align: center;
-    }
-    img {
-    text-align: center;
-    }
       body { background-color: white;
-        padding:60px 0 0 0:
-background-image : url(path_to_logo) no-repeat top left; 
-}
       }
-      p { color: black;
+      p { color: red;
         font-family: verdana;
         font-size: 20px;
       }
-      h1 
-{
-    text-align: center;
-    border-style: solid;
-}
-h2 
-{
-    font-size: 25px;
-  text-align: center;
-}
-    
-    
-description
-{
-    text-align: center;
-    font-family: "Times New Roman", Times, serif;
-    font-style: italic;
-    font-size: 21px;
-    color: black;
-}
     </style>
-       <form id="frm1" action="display.html" metho="GET">
-
-<h1>H.A.C.K</h1>
-    <head>
-    <img src="https://files.slack.com/files-tmb/T7VPKDJLW-F7V2YKLCT-8af1a44a27/hacklogonew_360.png" width=98% height=98%>
-    </head>
-<h2>Description:</h2>
-<description>When you're out drinking, do you know how much alcohol is in your body? No, you don't. Our product is very simple. You put in your weight, gender, number of hours since you've begun drinking, and the number of beers you've drunk. We put it into our algorithm, and you have your Blood Alcohol Content (BAC). In addition to that, we recommend what you can and cannot do while your BAC is at a certain level. This is available through our website or our mobile application.</description><br><br>
+       <h3>H.A.C.K</h3>
+       <form action="/post_field" method="POST">
         User's Weight: <input id="weight" type="number" name="weight">
         <br><br>
-        Hours since started drinking: <input id="hssd" type="number" name="hssd">
+        Hours Since Last First Drink: <input id="hssd" type="number" name="hssd">
         <br><br>
         Gender: <input id="gender" type="text" name="gender">
         <br><br>
-        <h2> Enter the drinks you've had. If you've had more than one drink, click the 'Add Drink' button </h2>
-        <ul id="addrlist"><input type="drink" name="beer" value="Enter Beer..."></ul>
- 			<button id="drinkAdd" type="button">Add Drink</button>
+        <h3> Enter the drinks you've had. If you've had more than one drink, click the 'Add Drink' button. </h3>
+        Enter Beer: <input id="beer" type="text" name="beer">
  			<button id="submitData" type="button">Calculate BAC</button>
  			<br>
  			<br>
-         <p id="demo"></p>
+         <textarea id="result" rows="4" cols="50"></textarea>
       	</form>
 
-<br> 
-
   		<script>
-          
-        //Appends text box to container 
-        document.getElementById("drinkAdd").onclick = function() {
-          var li = document.createElement("p");
-          var input = document.createElement("input");
-          input.value = "Enter Beer..."
-          li.appendChild(input);
-          document.getElementById("addrlist").appendChild(li);
-          return false;
-        }
-        
-        
+
+  		var result = 0;
+  		var volume_alcohol = 0;
+
         function Calculate_BAC() {
        		var Weight = document.getElementsByName("weight")[0].value;
-       		var A = 1; // A is going to be given
+       		var A = 1;
        		var Gender = document.getElementsByName("gender")[0].value;
             var H = document.getElementsByName("hssd")[0].value;
        		var r;
@@ -88,38 +42,22 @@ description
          		r = .66;
              }
           
-       		var BAC_calculation = ((A * 5.14) / (Weight * r)) - .015 * H; 
-          	//BAC_calculation=1;
+       		var BAC_calculation = ((A * 5.14) / (Weight * r)) - .015 * H;
        		return BAC_calculation; 
      	}
           
-     //update text area - 
+     //update text area
      document.getElementById("submitData").onclick = function(){
-     	var result = Calculate_BAC(); //this is where you append the results to the second 
+        volume_alcohol += 12;
+     	result += (Calculate_BAC() / volume_alcohol); //this is where you append the results to the second
         document.getElementById("result").value = result;
-         
+
      }
-     function move(BAC_calculation) {
-  var elem = document.getElementById("myBar");
-  //var div = document.getElementById("myProgress");
-  var width = 0;
-  var id = setInterval(frame, 100);
-  function frame(BAC_calculation) {
-    if (width >= ((80))) {
-      clearInterval(id);
-    } else {
-      width++; 
-      elem.style.width = width + '%';
-      elem.innerHTML = width * 1  + '%';
-      if (width > 50) {
-      	elem.style.background = "red";
-        }
-    }
-  }
-}
         </script>
  
     <body>
-      <img src="http://s3.amazonaws.com/brewerydb/Powered-By-BreweryDB.png" width=50% height=50%>
+
+      
+ 
       </body>
 </html>
