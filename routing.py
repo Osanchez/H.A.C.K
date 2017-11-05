@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 
 from brewerydb.brewerydb import BreweryDB
 
-
 def refined_search(arguments, search_array):  # Static Method
     updated_list = None  # Declares a variable that will be updated after each search
     for i in arguments:  # run filters for each of the remaining arguments
@@ -80,16 +79,22 @@ app = Flask(__name__)
 
 api = BreweryQuery("5ceb8b4ef81887489d3b65211a60fe12")
 
+@app.route('/')
+def my_form():
+    return render_template('page2.html', A = int(1))
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET','POST'])
 def get_attributes():
-    if request.method == 'POST':
-        beer = request.form["liquor"]
-        api.add_beers(beer)
-        result = str(api)
-        return render_template('page1.html', A=int(result))
-    else:
-        return render_template('page1.html', A=int(1))
+    #if request.method == 'POST':
+    beer = request.form["beer"]
+    get_attributes = request.args.get('beer')
+    processed_beer = beer.lower()
+    #api.add_beers(beer)
+    #result = str(api)
+    print processed_beer, beer_data
+    #return render_template('page2.html', A=int(result))
+    #else:
+    #    return render_template('page2.html', A=int(1))
 
 
 if __name__ == '__main__':
