@@ -1,15 +1,70 @@
 <!DOCTYPE html>  
 <html>
     <style>
-      body { background-color: white;
-      }
-      p { color: red;
+    trying {
+		position: relative;
+		text-align: center;
+		margin-left: 375px;
+    }
+    img {
+		text-align: center;
+    }
+    body { 
+		background-color: white;;
+	}
+    p { 
+		color: black;
         font-family: verdana;
         font-size: 20px;
-      }
+    }
+     h1 {
+		text-align: center;
+		border-style: solid;
+	}
+	h2
+	{
+		font-size: 25px;
+		text-align: center;
+	}
+	h5{
+		text-align: center;
+	}
+	
+	.contents{
+		width: 100%;
+		margin: auto;
+		height: 75px;
+		
+	}
+
+		
+	description {
+		text-align: center;
+		font-family: "Times New Roman", Times, serif;
+		font-style: italic;
+		font-size: 21px;
+		color: black;
+	}
     </style>
-       <h3>H.A.C.K</h3>
-       <form action="/" method="POST">
+	<hello>
+	<head>
+	
+    </head>
+	
+	<trying>
+	<img src="static/hacklogo.png" width=50% height=50%>
+	</trying>
+	</hello>
+	<div class ="contents" style = "color: black; text-align: center; padding-bottom: 1px;">
+<h5><description>When you're out drinking, do you know how much alcohol is
+in your body? No, you don't. Our product is very simple. You put in
+your weight, gender, number of hours since you've begun drinking, and
+the number of beers you've drunk. We put it into our algorithm, and
+you have your Blood Alcohol Content (BAC). In addition to that, we
+recommend what you can and cannot do while your BAC is at a certain
+level. This is available through our website or our mobile
+application.</description><br><br></h5>
+       <form method="POST">
         User's Weight: <input id="weight" type="number" name="weight">
         <br><br>
         Hours Since Last First Drink: <input id="hssd" type="number" name="hssd">
@@ -25,10 +80,8 @@
       	</form>
 
   		<script>
-
   		var result = 0;
   		var volume_alcohol = 0;
-
         function Calculate_BAC() {
        		var Weight = document.getElementsByName("weight")[0].value;
        		var A = {{ A }};
@@ -51,13 +104,12 @@
         volume_alcohol += 12;
      	result += (Calculate_BAC() / volume_alcohol); //this is where you append the results to the second
         document.getElementById("result").value = result;
-
      }
         </script>
  
     <body>
+	   <img src="http://s3.amazonaws.com/brewerydb/Powered-By-BreweryDB.png"width=75% height=75%>
+	
 
-      
- 
       </body>
 </html>
