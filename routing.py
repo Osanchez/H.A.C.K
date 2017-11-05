@@ -1,7 +1,11 @@
 from flask import Flask, url_for, render_template
+from flask import request
+
 from app import app
 
 from brewerydb.brewerydb import BreweryDB
+
+
 # API Key:  5ceb8b4ef81887489d3b65211a60fe12
 
 
@@ -37,14 +41,14 @@ class BreweryQuery:
                 return
             else:
                 print("Please be more specific with beer name")
-            # else:
+                # else:
                 # counter = 0
                 # for i in beers_array:
-                    # print("[" + str(counter) + "] " + i.name)
-                    # counter += 1
-            # print
-            # choice = input("Please Select Beer: ")
-            # self.beers.append(beers_array[choice])
+                # print("[" + str(counter) + "] " + i.name)
+                # counter += 1
+                # print
+                # choice = input("Please Select Beer: ")
+                # self.beers.append(beers_array[choice])
         except TypeError:
             return
 
@@ -75,27 +79,27 @@ class BreweryQuery:
         for x in self.beers:
             total += float(x.abv) * 12
             volume += 12
+        return total / volume
 
-        return total/volume
 
-@app.route('/', methods = ['GET'])
+@app.route('/', methods=['GET'])
 def commence():
     return render_template('page1.html')
 
 
-@app.route('/AlcoholWarning', methods = ['GET', 'POST'])
+@app.route('/AlcoholWarning', methods=['GET', 'POST'])
 def main():
     my_api_key = "5ceb8b4ef81887489d3b65211a60fe12"  # 400 api calls daily
-    test1 = BreweryQuery(my_api_key) 
+    api_object = BreweryQuery(my_api_key)
     if request.method == "GET":
         return render_template("page2.html")
     elif request.method == 'POST':
         increase = request.form['liquor']
         # for each item in result set print name of beer object and alcohol content of beer object
         # creates a BreweryQuery object and initialized it to variable named test
-        test1.add_beers(increase)  # appends beer to list
-        result = test1
-                return render_template("page2.html", result = result)
+        api_object.add_beers(increase)  # appends beer to list
+        result = api_object
+        return render_template("page2.html", result=result)
     else:
         shutdown_server()
-        return("Server shutting down...")
+        return "Server shutting down..."
