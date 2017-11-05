@@ -1,7 +1,8 @@
-from flask import Flask, url_for, render_template, request, flash
-from app import app
+from flask import Flask, render_template, request
 
 from brewerydb.brewerydb import BreweryDB
+
+
 # API Key:  5ceb8b4ef81887489d3b65211a60fe12
 
 
@@ -36,14 +37,14 @@ class BreweryQuery:
                 return
             else:
                 print("Please be more specific with beer name")
-            # else:
+                # else:
                 # counter = 0
                 # for i in beers_array:
-                    # print("[" + str(counter) + "] " + i.name)
-                    # counter += 1
-            # print
-            # choice = input("Please Select Beer: ")
-            # self.beers.append(beers_array[choice])
+                # print("[" + str(counter) + "] " + i.name)
+                # counter += 1
+                # print
+                # choice = input("Please Select Beer: ")
+                # self.beers.append(beers_array[choice])
         except TypeError:
             return
 
@@ -75,21 +76,24 @@ class BreweryQuery:
             total += float(x.abv) * 12
             volume += 12
 
-        return total/volume
+        return total / volume
 
-@app.route('/', methods = ['GET','POST'])
-def commence():
-    my_api_key = "5ceb8b4ef81887489d3b65211a60fe12"  # 400 api calls daily
-    test1 = BreweryQuery(my_api_key)
-    increase = request.method("liquor")
-    print(increase)
-    # for each item in result set print name of beer object and alcohol content of beer object
-    # creates a BreweryQuery object and initialized it to variable named test
-    test1.add_beers(increase)  # appends beer to list
-    result = test1
-    print(result)
-    return render_template('page1.html', result = result)
- 
-    #else:
-     #   return render_template('page1.html')
 
+app = Flask(__name__)
+
+
+@app.route('/')
+def my_form():
+    return render_template("page1.html")
+
+
+@app.route('/display', methods=['POST'])
+def my_form_post():
+    test = BreweryQuery("5ceb8b4ef81887489d3b65211a60fe12")
+    beer = request.form["liquor"]
+    return "You entered: {}".format(beer)
+    # test.add_beers(beer)
+
+if __name__ == '__main__':
+    app.debug = True
+    app.run()

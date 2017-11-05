@@ -8,8 +8,8 @@
         font-size: 20px;
       }
     </style>
-       <form id="frm1" action="display.html" metho="GET">
-         <h3>H.A.C.K</h3>
+       <h3>H.A.C.K</h3>
+       <form action="display" method="POST">
         User's Weight: <input id="weight" type="number" name="weight">
         <br><br>
         Hours Since Last First Drink: <input id="hssd" type="number" name="hssd">
@@ -17,7 +17,7 @@
         Gender: <input id="gender" type="text" name="gender">
         <br><br>
         <h3> Enter the drinks you've had. If you've had more than one drink, click the 'Add Drink' button. </h3>
-        Enter Beer: <input type="drink" name="beer" value=""> \\TODO: THIS IS YOUR HTML VALUE YOU WANT MAN
+        Enter Beer: <input id="beer" type="text" name="beer">
  			<button id="submitData" type="button">Calculate BAC</button>
  			<br>
  			<br>
