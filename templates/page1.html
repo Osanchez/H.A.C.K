@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-  <html>
+<!DOCTYPE html>  
+<html>
     <style>
       body { background-color: blue;
       }
@@ -8,39 +8,65 @@
         font-size: 20px;
       }
     </style>
-    <body>
-      <form id="frm1" action="display.html" method ="GET">
-        First name: <input type="text" name="fname"><br>
-        Last name: <input type="text" name="lname"><br><br>
-        <input type="button" onclick="data()" value="Submit">
-      </form>
-      <p id="demo"></p>
-      <p id="demo1"></p>
-      <button type="button" onclick="Alcohol()">Click Me!</button>
-    <script>
-      function data() {
-        document.getElementById("frm1").submit();
-      }
-      function Alcohol() {
-        var Beers = 7;
-        var Ounce = 12;
-        var Percent = .05;
-        var W = 170;
-        var A = Beers*Ounce*Percent;
-        var Gender = 'f'
-        var r;
-        if (Gender == 'm') {
-          r = .73;
-        } else {
-          r = .66;
+       <form id="frm1" action="display.html" metho="GET">
+         <h3>H.A.C.K</h3>
+        User's Weight: <input id="weight" type="number" name="weight">
+        <br><br>
+        Hours since started drinking: <input id="hssd" type="number" name="hssd">
+        <br><br>
+        Gender: <input id="gender" type="text" name="gender">
+        <br><br>
+        <h2> Enter the drinks you've had. If you've had more than one drink, click the 'Add Drink' button </h2>
+        <ul id="addrlist"><input type="drink" name="beer" value="Enter Beer..."></ul>
+ 			<button id="drinkAdd" type="button">Add Drink</button>
+ 			<button id="submitData" type="button">Calculate BAC</button>
+ 			<br>
+ 			<br>
+         <p id="demo"></p>
+      	</form>
+
+  		<script>
+          
+        //Appends text box to container 
+        document.getElementById("drinkAdd").onclick = function() {
+          var li = document.createElement("p");
+          var input = document.createElement("input");
+          input.value = "Enter Beer..."
+          li.appendChild(input);
+          document.getElementById("addrlist").appendChild(li);
+          return false;
         }
-        //var r = .73
-        var H = 4.5;
-        var BAC = ((A * 5.14) / (W * r)) - .015 * H;
-        document.getElementById("demo").innerHTML = (r);
-        document.getElementById("demo1").innerHTML = BAC;
-        //document.write(BAC);
-      }
-    </script>
-    </body>
-   </html>
+        
+        
+        function Calculate_BAC() {
+       		var Weight = document.getElementsByName("weight")[0].value;
+       		var A = 1; // A is going to be given
+       		var Gender = document.getElementsByName("gender")[0].value;
+            var H = document.getElementsByName("hssd")[0].value;
+       		var r;
+          
+       		if (Gender == 'm') {
+         		r = .73;
+      		 } else {
+         		r = .66;
+             }
+          
+       		var BAC_calculation = ((A * 5.14) / (Weight * r)) - .015 * H; 
+          	//BAC_calculation=1;
+       		return BAC_calculation; 
+     	}
+          
+     //update text area - 
+     document.getElementById("submitData").onclick = function(){
+     	var result = Calculate_BAC(); //this is where you append the results to the second 
+        document.getElementById("result").value = result;
+         
+     }  
+        </script>
+ 
+    <body>
+
+      
+ 
+      </body>
+</html>
