@@ -32,10 +32,10 @@
             document.getElementById("frm1").submit();
           }
       function Alcohol() {
-        var Beers = document.getElementsByName("nob")[0].value;
+        //var Beers = document.getElementsByName("nob")[0].value;
         //var Beers = 7;
-        var Ounce = document.getElementsByName("ounces")[0].value;
-        var Percent = document.getElementsByName("percent")[0].value;
+        //var Ounce = document.getElementsByName("ounces")[0].value;
+        //var Percent = document.getElementsByName("percent")[0].value;
         var Weight = document.getElementsByName("weight")[0].value;
         var A = 1;
         // A is going to be given
@@ -48,7 +48,8 @@
           r = .66;
         }
         //var r = .73
-        var H = 4.5;
+        //var H = 4.5;
+        var H = document.getElementsByName("hssd")[0].value;
         var BAC = ((A * 5.14) / (Weight * r)) - .015 * H;
         //document.getElementById("demo").innerHTML = (A);
         document.getElementById("demo1").innerHTML = BAC;
