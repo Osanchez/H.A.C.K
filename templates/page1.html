@@ -9,7 +9,7 @@
       }
     </style>
        <h3>H.A.C.K</h3>
-       <form action="display" method="POST">
+       <form action="/" method="POST">
         User's Weight: <input id="weight" type="number" name="weight">
         <br><br>
         Hours Since Last First Drink: <input id="hssd" type="number" name="hssd">
@@ -21,7 +21,7 @@
  			<button id="submitData" type="button">Calculate BAC</button>
  			<br>
  			<br>
-         <textarea id="result" rows="4" cols="50"></textarea>
+           <textarea id="result" rows="4" cols="50"></textarea>
       	</form>
 
   		<script>
@@ -31,7 +31,7 @@
 
         function Calculate_BAC() {
        		var Weight = document.getElementsByName("weight")[0].value;
-       		var A = 1; // TODO: ADD YOUR RESULT HERE MAN
+       		var A = {{ A }};
        		var Gender = document.getElementsByName("gender")[0].value;
             var H = document.getElementsByName("hssd")[0].value;
        		var r;

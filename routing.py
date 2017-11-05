@@ -3,9 +3,6 @@ from flask import Flask, render_template, request
 from brewerydb.brewerydb import BreweryDB
 
 
-# API Key:  5ceb8b4ef81887489d3b65211a60fe12
-
-
 def refined_search(arguments, search_array):  # Static Method
     updated_list = None  # Declares a variable that will be updated after each search
     for i in arguments:  # run filters for each of the remaining arguments
@@ -81,18 +78,19 @@ class BreweryQuery:
 
 app = Flask(__name__)
 
-
-@app.route('/')
-def my_form():
-    return render_template("page1.html")
+api = BreweryQuery("5ceb8b4ef81887489d3b65211a60fe12")
 
 
-@app.route('/display', methods=['POST'])
-def my_form_post():
-    test = BreweryQuery("5ceb8b4ef81887489d3b65211a60fe12")
-    beer = request.form["liquor"]
-    return "You entered: {}".format(beer)
-    # test.add_beers(beer)
+@app.route('/', methods=['GET', 'POST'])
+def get_attributes():
+    if request.method == 'POST':
+        beer = request.form["liquor"]
+        api.add_beers(beer)
+        result = str(api)
+        return render_template('page1.html', A=int(result))
+    else:
+        return render_template('page1.html', A=int(1))
+
 
 if __name__ == '__main__':
     app.debug = True
